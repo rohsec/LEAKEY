@@ -1,5 +1,5 @@
 ## LEAKEY 🔑
-[![leakeylogo.png](https://i.postimg.cc/0Qwzhz5V/leakeylogo.png)](https://postimg.cc/tZ9RxCx6)
+[![leakeylogo.png](https://i.postimg.cc/0Qwzhz5V/leakeylogo.png)](https://postimg.cc/tZ9RxCx6)<br>
 LEAKEY is a tool is for validation of leaked API tokens/keys found during pentesting and Red Team Enegagments.<br> 
 The script is really useful for Bug Hunters inorder to validate and determine the impact of leaked credentials.
 
@@ -12,7 +12,7 @@ LEAKEY loads the services/check list via the signature file, if you wish to add 
 * jq
 
 ## Installation:
-``` X ```
+``` curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_install.sh && chmod +x leaky_install.sh && bash leaky_install.sh```
 
 ## Usage:
 leaky
