@@ -19,7 +19,7 @@ printf """
 installer(){
     printf "\nInstalling..."
     mkdir ~/.leakey/ && git clone "https://github.com/rohsec/LEAKEY" && cd LEAKEY && cp signatures.json ~/.leakey && chmod +x leakey.sh && mv leakey.sh /usr/bin/leaky && cd .. && rm -r LEAKEY
-    [ -f ~/.leakey/signatures.json] && printf "\n [ ✔ ] Installation Successful..." || printf "[ X ] Installation Failure..."
+    [ -f ~/.leakey/signatures.json ] && printf "\n [ ✔ ] Installation Successful..." || printf "[ X ] Installation Failure..."
 }
 
 #########################################################
