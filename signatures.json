@@ -1,0 +1,286 @@
+[
+  {
+    "id": 0,
+    "name": "Slack API Token",
+    "args": [
+      "token"
+    ],
+    "command": "curl -sX POST \"https://slack.com/api/auth.test?token=xoxp-$token&pretty=1\""
+  },
+  {
+    "id": 1,
+    "name": "Saucelabs Username and Access Key",
+    "args": [
+      "username",
+      "key"
+    ],
+    "command": "curl -s -u $username:$key https://saucelabs.com/rest/v1/users/$username"
+  },
+  {
+    "id": 2,
+    "name": "Firebase Custom Token and API key",
+    "args": [
+      "token",
+      "key"
+    ],
+    "command": "Id_token=$(curl -s -XPOST -H 'content-type: application/json' -d '{\"token\":\":$token\",\"returnSecureToken\":True}' 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=:$key' | grep idToken | grep id | cut -f 1 | tr -d \",\" ) && curl -s -XPOST -H 'content-type: application/json' -d '{$Id_token}' 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=:$key'"
+  },
+  {
+    "id": 3,
+    "name": "Github Username & Token/key",
+    "args": ["user","key"],
+    "command": "curl -s -u \"$user:$key\" https://api.github.com/user && curl -s -H \"Authorization: token $key\" \"https://api.github.com/users/$user/orgs\" && curl -s \"https://api.github.com/rate_limit\" -i -u \"$user:$key\" | grep \"X-OAuth-Scopes:\""
+  },
+  {
+    "id": 4,
+    "name": "Github Client ID and Secret",
+    "args": ["id","secret"],
+    "command": "curl 'https://api.github.com/users/whatever?client_id=$id&client_secret=$secret'"
+  },
+  {
+    "id": 5,
+    "name": "Google Cloud Messaging Key",
+    "args": ["key"],
+    "command": "curl -s -X POST --header \"Authorization: key=$key\" --header \"Content-Type:application/json\" 'https://gcm-http.googleapis.com/gcm/send' -d '{\"registration_ids\":[\"1\"]}"
+  },
+  {
+    "id": 6,
+    "name": "Twilio Account_SID & Secret Key",
+    "args": ["sid","token"],
+    "command": "curl -s -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u $sid:$token | jq ."
+  },
+  {
+    "id": 7,
+    "name": "Twitter API key & Secret",
+    "args": ["key","secret"],
+    "command": "bearer=$(curl -s -u '$key:$secret' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token' | cut -d '\"' -f 8 ) &&curl -s --request GET --url https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json --header 'authorization: Bearer $bearer' | jq ."
+  },
+  {
+    "id": 8,
+    "name": "Twitter Bearer/Auth Token",
+    "args": ["token"],
+    "command": "curl -s --request GET --url https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json --header 'authorization: Bearer $token' | jq ."
+  },
+  {
+    "id": 9,
+    "name": "Hubspot API key",
+    "args": ["key"],
+    "command": "curl -s https://api.hubapi.com/owners/v2/owners?hapikey=$key | jq . && curl -s https://api.hubapi.com/contacts/v1/lists/all/contacts/all?hapikey=$key | jq ."
+  },
+  {
+    "id": 10,
+    "name": "Deviant Art Client ID & Secret key",
+    "args": ["id","key"],
+    "command": "curl -s https://www.deviantart.com/oauth2/token -d grant_type=client_credentials -d client_id=$id -d client_secret=$key | jq ."
+  },
+  {
+    "id": 11,
+    "name": "Validation of Deviant Art Token",
+    "args": ["token"],
+    "command": "curl -s https://www.deviantart.com/api/v1/oauth2/placebo -d access_token=$token | jq ."
+  },
+  {
+    "id": 12,
+    "name": "Pendo Integration Key",
+    "args": ["key"],
+    "command": "curl -s -X GET https://app.pendo.io/api/v1/feature -H 'content-type: application/json' -H 'x-pendo-integration-key:$key' && curl -X GET https://app.pendo.io/api/v1/metadata/schema/account -H 'content-type: application/json' -H 'x-pendo-integration-key:$key'"
+  },
+  {
+    "id": 13,
+    "name": "SendGrid API Token",
+    "args": ["token"],
+    "command": "curl -s -X GET \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer $token\" -H \"Content-Type: application/json\" | jq ."
+  },
+  {
+    "id": 14,
+    "name": "Square Auth Token",
+    "args": ["auth_token"],
+    "command": "curl -s https://connect.squareup.com/v2/locations -H \"Authorization: Bearer $auth_token\" | jq ."
+  },
+  {
+    "id": 15,
+    "name": "Square ClientID, Secret & Token",
+    "args": ["id","secret","token"],
+    "command": "curl -s \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"$token\",\"client_id\":\"$id\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client $secret\""
+  },
+  {
+    "id": 16,
+    "name": "Dropbox API Bearer/Auth Token",
+    "args": ["token"],
+    "command": "curl -X POST https://api.dropboxapi.com/2/users/get_current_account --header \"Authorization: Bearer $token\""
+  },
+  {
+    "id": 17,
+    "name": "MailGun Private Key",
+    "args": ["private_key"],
+    "command": "curl -s --user 'api:$private_key' \"https://api.mailgun.net/v3/domains\" | jq ."
+  },
+  {
+    "id": 18,
+    "name": "Jumpcloud API key",
+    "args": ["key"],
+    "command": "curl -s -H \"x-api-key: $key\" \"https://console.jumpcloud.com/api/systems\""
+  },
+  {
+    "id": 19,
+    "name": "Heroku API key/Bearer Token",
+    "args": ["token"],
+    "command": "curl -s -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer $token\""
+  },
+  {
+    "id": 20,
+    "name": "Microsoft Azure Client ID, secret & Tenant ID",
+    "args": ["id","secret","tenant"],
+    "command": "curl -s -X POST -H \"Content-Type: application/x-www-form-urlencoded\" -d 'client_id=$id&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=$secret&grant_type=client_credentials' 'https://login.microsoftonline.com/$tenant/oauth2/v2.0/token' | jq ."
+  },
+  {
+    "id": 21,
+    "name": "Mapbox API key",
+    "args": ["key"],
+    "command": "curl -s \"https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=$key\" | jq ."
+  },
+  {
+    "id": 22,
+    "name": "Salesforce API Key/Bearer Token",
+    "args": ["key","url"],
+    "command": "curl $url/services/data/v20.0/ -H 'Authorization: Bearer $key"
+  },
+  {
+    "id": 23,
+    "name": "Zapier Webhook URL & Username",
+    "args": ["url","name"],
+    "command": "curl -s -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"$name\"}' \"$url\""
+  },
+  {
+    "id": 24,
+    "name": "FreshDesk Domain & API key",
+    "args": ["domain","key"],
+    "command": "curl -s -u $key:X -H \"Content-Type: application/json\" '$domain/api/v2/tickets' "
+  },
+  {
+    "id": 25,
+    "name": "PagerDuty API Token",
+    "args": ["token"],
+    "command": "curl -s -H \"Accept: application/vnd.pagerduty+json;version=2\"  -H \"Authorization: Token token=$token\" -X GET  \"https://api.pagerduty.com/schedules\""
+  },
+  {
+    "id": 26,
+    "name": "Browser Stack Access Key and Username",
+    "args": ["key","username"],
+    "command": "curl -u \"$username:$key\" https://api.browserstack.com/automate/plan.json"
+  },
+  {
+    "id": 27,
+    "name": "Google MAPS API key",
+    "args": ["key"],
+    "command": "curl -H \"referer: http://example.com\" \"https://maps.googleapis.com/maps/api/directions/json?origin=Stockholm&destination=Kalmar&key=$key\""
+  },
+  {
+    "id": 28,
+    "name": "Branch.io Key & secret",
+    "args": ["key","secret"],
+    "command": "curl -s https://api2.branch.io/v1/app/$key?branch_secret=$secret | jq ."
+  },
+  {
+    "id": 29,
+    "name": "bit.ly Access Token",
+    "args": ["token"],
+    "command": "curl -s https://api-ssl.bitly.com/v3/shorten?access_token=$token | jq ."
+  },
+  {
+    "id": 30,
+    "name": "Buildkite Access Token",
+    "args": ["token"],
+    "command": "curl -H \"Authorization: Bearer $token\" https://api.buildkite.com/v2/user"
+  },
+  {
+    "id": 31,
+    "name": "Asana Access Token/Bearer Token",
+    "args": ["token"],
+    "command": "curl -s -H \"Authorization: Bearer $token\" https://app.asana.com/api/1.0/users/me | jq ."
+  },
+  {
+    "id": 32,
+    "name": "Zendesk helpdesk domain & Access Token",
+    "args": ["url","token"],
+    "command": "curl $url/api/v2/tickets.json -H \"Authorization: Bearer $token\""
+  },
+  {
+    "id": 33,
+    "name": "Mailchimp Accesskey and Username",
+    "args": ["key","username"],
+    "command": "dc=$(echo $key | rev | cut -c1-3 | rev) && curl -s --request GET --url 'https://'$dc'.api.mailchimp.com/3.0/' --user '$username:$key' --include"
+  },
+  {
+    "id": 34,
+    "name": "WPEngine API key & Account Name",
+    "args": ["key","name"],
+    "command": "curl -s \"https://api.wpengine.com/1.2/?method=site&account_name=$name&wpe_apikey=$key\" | jq ."
+  },
+  {
+    "id": 35,
+    "name": "DataDog API Key & Application Key",
+    "args": ["api_key","app_key"],
+    "command": "curl -s \"https://api.datadoghq.com/api/v1/dashboard?api_key=$api_key&application_key=$app_key\" | jq ."
+  },
+  {
+    "id": 36,
+    "name": "Travis CI API Token",
+    "args": ["token"],
+    "command": "curl -H \"Travis-API-Version: 3\" -H \"Authorization: token $token\" https://api.travis-ci.com/user"
+  },
+  {
+    "id": 37,
+    "name": "WakaTime API Key",
+    "args": ["key"],
+    "command": "curl -s \"https://wakatime.com/api/v1/users/current/projects/?api_key=$key\" | jq ."
+  },
+  {
+    "id": 38,
+    "name": "Spotify Access Token/Bearer Token",
+    "args": ["token"],
+    "command": "curl -H \"Authorization: Bearer $token\" https://api.spotify.com/v1/me"
+  },
+  {
+    "id": 39,
+    "name": "Instagram Access Token",
+    "args": ["token"],
+    "command": "curl -s https://api.instagram.com/v1/users/self/?access_token=$token | jq ."
+  },
+  {
+    "id": 40,
+    "name": "Gitlab Personal/Private Token",
+    "args": ["token","url"],
+    "command": "curl -s \"$url/api/v4/projects?private_token=$token\""
+  },
+  {
+    "id": 41,
+    "name": "Stripe Live Token",
+    "args": ["token"],
+    "command": "curl -s https://api.stripe.com/v1/charges -u $token: | jq ."
+  },
+  {
+    "id": 42,
+    "name": "CicrcleCI Access Token",
+    "args": ["token"],
+    "command": "curl -s https://circleci.com/api/v1.1/me?circle-token=$token | jq ."
+  },
+  {
+    "id": 43,
+    "name": "Razorpay API Key ID & Secret Key",
+    "args": ["key","secret"],
+    "command": "curl -s -u $key:$secret https://api.razorpay.com/v1/payments | jq ."
+  },
+  {
+    "id": 44,
+    "name": "Paypal ClientID & Secret",
+    "args": ["client","secret"],
+    "command": "curl -s -v https://api.sandbox.paypal.com/v1/oauth2/token -H \"Accept: application/json\" -H \"Accept-Language: en_US\" -u \"$client:$secret\" -d \"grant_type=client_credentials\" && bearer=$(curl -s -v https://api.sandbox.paypal.com/v1/oauth2/token -H \"Accept: application/json\" -H \"Accept-Language: en_US\" -u \"$client:$secret\" -d \"grant_type=client_credentials\") && curl -s -v -X GET \"https://api.sandbox.paypal.com/v1/identity/oauth2/userinfo?schema=paypalv1.1\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer $bearer\"" 
+   },
+   {
+    "id":45,
+    "name":"IPstack",
+    "args":["key"],
+    "command":"curl -s https://api.ipstack.com/check?access_key=$key | jq ."
+   }
+]
