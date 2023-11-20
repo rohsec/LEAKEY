@@ -12,7 +12,7 @@ LEAKEY loads the services/check list via the signature file, if you wish to add 
 * jq
 
 ## Installation:
-``` curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_install.sh && chmod +x leaky_install.sh && bash leaky_install.sh```
+```curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_install.sh && chmod +x leaky_install.sh && bash leaky_install.sh```
 
 ## Usage:
 leaky
@@ -30,6 +30,9 @@ All the checks for LEAKEY are defined in the ```signatures.json``` file. <br>To 
   }
 ``` 
 ## Screenshots:
+[![leakey1.png](https://i.postimg.cc/J79517KX/leakey1.png)](https://postimg.cc/kDvbsm0M)<br>
+[![leakey2.png](https://i.postimg.cc/Fs3g1tnB/leakey2.png)](https://postimg.cc/Yh2myP76) <br>
+[![leakey3.png](https://i.postimg.cc/bJVSVgVb/leakey3.png)](https://postimg.cc/bDbvsxhN)
 
 ## Credits:
 @streaa - https://github.com/streaak/keyhacks<br>

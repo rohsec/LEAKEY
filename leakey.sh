@@ -11,7 +11,7 @@ red='\033[0;31m'
 blue='\033[0;34m'
 green='\033[0;32m'
 reset='\033[0m'
-sign_dir="~/.leakey/signatures.json"
+sign_dir=~/.leakey/signatures.json
 
 #########################################################
 #                   Logo                                #
@@ -36,7 +36,7 @@ printf """
 #                 Engine Core Logic                     #
 #########################################################
 main(){
-    if [ -z $sign_dir ]
+    if [ -f $sign_dir ]
     then
     declare -A x1=()
     printf "\n$bblue═════════$bred Leaks Menu$bblue ═════════\n$reset"
