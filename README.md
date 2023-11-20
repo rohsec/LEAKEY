@@ -17,7 +17,10 @@ curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_
 ```
 
 ## Usage:
+After running the installation command, simply run the below in your terminal
+```bash
 leaky
+```
 
 ## Adding Checks:
 All the checks for LEAKEY are defined in the ```signatures.json``` file. <br>To add any new checks, simply appened the signatures file at ```~/.leakey/signatures.json```
