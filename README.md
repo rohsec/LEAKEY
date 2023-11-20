@@ -12,7 +12,9 @@ LEAKEY loads the services/check list via the signature file, if you wish to add 
 * jq
 
 ## Installation:
-```curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_install.sh && chmod +x leaky_install.sh && bash leaky_install.sh```
+```bash
+curl https://raw.githubusercontent.com/rohsec/LEAKEY/master/install.sh -o leaky_install.sh && chmod +x leaky_install.sh && bash leaky_install.sh
+```
 
 ## Usage:
 leaky
