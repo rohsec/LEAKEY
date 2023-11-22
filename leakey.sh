@@ -44,7 +44,7 @@ main(){
     printf "\n${bblue}Enter Choice :$bred"
     read choice
     printf "$blue═══════════════════════════════════════"
-    if [[ $choice != "" ]] && [[ $choice = ?(-)+([0-9]) ]] && [ $choice -lt $(cat $sign_dir|jq length) ]
+    if [[ $choice != "" ]] && [[ $choice =~ ^[-+]?[0-9]+$ ]] && [ $choice -lt $(cat $sign_dir|jq length) ]
     then
     select_choice=$(cat $sign_dir|jq -r --arg choice1 "$choice"  '.['$choice']|.name')
     printf "\n${bblue}Selected Leaks : $bred $select_choice $reset\n\n"
