@@ -65,7 +65,7 @@ main(){
     sleep 2
     printf "\n${yellow}Request:$blue\n═══════════════════════════════════════$reset"
     printf "\n$cmd"
-    resp=$(bash -c "$cmd")
+    resp=$(eval "$cmd")
     printf "\n\n${yellow}Response:$blue\n═══════════════════════════════════════$reset"
     printf "\n$resp"
     else

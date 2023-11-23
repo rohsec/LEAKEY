@@ -23,7 +23,7 @@
       "token",
       "key"
     ],
-    "command": "Id_token=$(curl -s -XPOST -H 'content-type: application/json' -d '{\"token\":\":$token\",\"returnSecureToken\":True}' 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=:$key' | grep idToken | grep id | cut -f 1 | tr -d \",\" ) && curl -s -XPOST -H 'content-type: application/json' -d '{$Id_token}' 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=:$key'"
+    "command": "Id_token=$(curl -s -XPOST -H 'content-type: application/json' -d '{\"token\":\":$token\",\"returnSecureToken\":True}' 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=:$key' | grep idToken | grep id | cut -f 1 | tr -d \",\" ) && curl -s -XPOST -H 'content-type: application/json' -d ''$Id_token}'' 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=:$key'"
   },
   {
     "id": 3,
@@ -53,7 +53,7 @@
     "id": 7,
     "name": "Twitter API key & Secret",
     "args": ["key","secret"],
-    "command": "bearer=$(curl -s -u '$key:$secret' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token' | cut -d '\"' -f 8 ) &&curl -s --request GET --url https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json --header 'authorization: Bearer $bearer' | jq ."
+    "command": "bearer=$(curl -s -u '$key:$secret' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token' | cut -d '\"' -f 8 ) && curl -s --request GET --url https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json --header 'authorization: Bearer '$bearer'' | jq ."
   },
   {
     "id": 8,
@@ -227,7 +227,7 @@
     "id": 36,
     "name": "Travis CI API Token",
     "args": ["token"],
-    "command": "curl -H \"Travis-API-Version: 3\" -H \"Authorization: token $token\" https://api.travis-ci.com/user"
+    "command": "curl -s -H \"Travis-API-Version: 3\" -H \"Authorization: token $token\" https://api.travis-ci.com/user"
   },
   {
     "id": 37,
@@ -239,7 +239,7 @@
     "id": 38,
     "name": "Spotify Access Token/Bearer Token",
     "args": ["token"],
-    "command": "curl -H \"Authorization: Bearer $token\" https://api.spotify.com/v1/me"
+    "command": "curl -s -H \"Authorization: Bearer $token\" https://api.spotify.com/v1/me"
   },
   {
     "id": 39,
@@ -283,4 +283,4 @@
     "args":["key"],
     "command":"curl -s https://api.ipstack.com/check?access_key=$key | jq ."
    }
-]
+  ]
