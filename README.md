@@ -34,6 +34,11 @@ All the checks for LEAKEY are defined in the ```signatures.json``` file. <br>To 
     "command": "curl -sX POST \"https://slack.com/api/auth.test?token=xoxp-$token&pretty=1\""
   }
 ``` 
+## Donation (Buy Me a Coffee):
+You can encourage me me to contribute more to the open source with donations. NEVER ASKED BUT ALWAYS APPRECIATED.
+
+<a href="https://www.buymeacoffee.com/rohsec" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## Screenshots:
 [![leakey1.png](https://i.postimg.cc/J79517KX/leakey1.png)](https://postimg.cc/kDvbsm0M)<br>
 [![leakey2.png](https://i.postimg.cc/Fs3g1tnB/leakey2.png)](https://postimg.cc/Yh2myP76) <br>
